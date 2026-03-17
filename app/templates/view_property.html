@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block main%}
+    <h1>Properties</h1>
+    <div id = "propDisplay">
+
+        <div class = "propContainer">
+            <img src = "{{url_for('get_image', filename = i.filename)}}">
+
+            <h3 class = "title">{{i.title}}</h3>
+            <p class = "location">{{i.location}}</p>
+            <span class = "price">{{i.price}}</span>
+            <a href="{{ url_for('viewProperty', propertyid=i.id) }}">
+                <button class="viewProp">View Property</button>
+            </a>
+        </div>
+    </div>
+{% endblock %}

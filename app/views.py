@@ -5,10 +5,29 @@ Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file contains the routes for your application.
 """
 
-from app import app
-from flask import render_template, request, redirect, url_for
+from app import app, db
+from flask import render_template, request, redirect, url_for, flash, send_from_directory
+from werkzeug.utils import secure_filename
+from forms import PropertyForm
+from models import Property
+import os
 
+def get_uploaded_images():
+    lst = []
+    rootdir = os.getcwd() 
+    for subdir, dirs, files in os.walk(rootdir + '/uploads'): 
+        for file in files:
+            if file != ".gitkeep":
+                lst.append(file)
+            
+    return lst
 
+def get_image(filename):
+    
+    uploads = os.path.join(os.getcwd(),app.config['UPLOAD_FOLDER'])
+    if(os.path.exists(os.path.join(uploads, filename))):
+        return send_from_directory(uploads, filename)
+    
 ###
 # Routing for your application.
 ###
@@ -23,6 +42,44 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+@app.route('/properties/create', methods = ["GET","POST"]) 
+def addProperty():
+    form = PropertyForm()
+    
+    if form.validate_on_submit():
+        title = form.title.data
+        desc = form.desc.data
+        numRooms = form.numRooms.data
+        numBaths = form.numBaths.data
+        price = form.price.data
+        ptype = form.ptype.data
+        location = form.location.data
+        upload = form.photo.data
+        
+        filename = secure_filename(upload.filename)
+        upload.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        prop = Property(title, desc, numBaths, numRooms, ptype, price, location, filename)
+        
+        db.session.add(prop)
+        db.session.commit()
+        
+        flash('Property Saved', 'success')
+        
+        return redirect(url_for("showProperties"))
+        
+    return render_template("create_property.html", form = form)
+    
+@app.route('/properties')
+def showProperties():
+    properties = Property.query.all()
+    return render_template("properties.html", properties = properties)
+
+@app.route('/properties/<propertyid>')
+def viewProperty(propertyid):
+    property = Property.query.get_or_404(propertyid)
+    return render_template("view_property.html", property=property)
 
 
 ###

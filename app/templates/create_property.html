@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{%block main%}
+<div class = "heading">
+    <h1>Add Property</h1>
+
+</div>
+<div class = "form-container">
+    <form action= {{url_for('addProperty')}} method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+          
+    <div>
+        {{ form.title.label }}
+        {{ form.title}}
+    </div>
+    <div>
+        {{ form.desc.label }}
+        {{ form.desc}}
+
+    </div>
+    <div>
+        {{ form.numRooms.label }}
+        {{ form.numRooms}}
+
+        {{ form.numBaths.label }}
+        {{ form.numBaths}}
+
+    </div>
+    <div>
+        {{ form.price.label }}
+        {{ form.price}}
+
+        {{ form.type.label }}
+        {{ form.type}}
+    </div>
+
+
+    <div>
+        {{ form.location.label }}
+        {{ form.location}}
+    </div>
+
+    <div>
+        {{ form.photo.label }}
+        {{ form.photo}}
+    </div>
+    <button type="submit">Add Property</button>
+    
+    </form>
+</div>
+{%endblock%}
