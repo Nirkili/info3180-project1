@@ -1,0 +1,23 @@
+.propContainer{
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    height: 50%;
+    border: 3px rgb(184, 185, 183);
+}
+
+#infoDisplay{
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-btn{
+    background-color: var(--base-col);
+    color: white;
+}
+
+.custom-btn:hover{
+    background-color: var(--base-col);
+    color: white;
+}
+

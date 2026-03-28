@@ -1,17 +1,50 @@
 {% extends "base.html" %}
+{% block css%}
+    <link rel="stylesheet" href = "{{url_for('static', filename = 'css/property.css')}}">
+{%endblock %}
 {% block main%}
-    <h1>Properties</h1>
-    <div id = "propDisplay">
 
-        <div class = "propContainer">
-            <img src = "{{url_for('get_image', filename = i.filename)}}">
+    
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="row g-0">
 
-            <h3 class = "title">{{i.title}}</h3>
-            <p class = "location">{{i.location}}</p>
-            <span class = "price">{{i.price}}</span>
-            <a href="{{ url_for('viewProperty', propertyid=i.id) }}">
-                <button class="viewProp">View Property</button>
-            </a>
+            <div class="col-md-5">
+                <img src="{{url_for('get_image', filename=property.filename)}}" 
+                     class="img-fluid h-100 w-100 object-fit-cover" 
+                     alt="property image">
+            </div>
+
+            <div class="col-md-7">
+                <div class="card-body">
+
+                    <h4 class="card-title">{{property.title}}</h4>
+
+                    <div class="mb-2">
+                        <span class="badge price-badge me-2">${{ "{:,}".format(property.price) }}</span>
+                        <span class="badge type-badge me-2">{{property.ptype}}</span>
+                    </div>
+
+                    <p class="card-text text-muted">
+                        {{property.desc}}
+                    </p>
+
+                    <div class="d-flex gap-4 mb-2">
+                        <span> {{property.numRooms}} Bedrooms</span>
+                        <span> {{property.numBaths}} Bathrooms</span>
+                    </div>
+
+                    <p class="text-muted mb-3">
+                        {{property.location}}
+                    </p>
+
+                    <button class="btn custom-btn">Email Realtor</button>
+
+                </div>
+            </div>
+
         </div>
     </div>
+</div>
+    
 {% endblock %}

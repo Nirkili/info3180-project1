@@ -1,49 +1,52 @@
 {% extends "base.html" %}
+{% block css%}
+    <link rel="stylesheet" href = "{{url_for('static', filename = 'css/form.css')}}">
+{%endblock %}
 {%block main%}
-<div class = "heading">
+<div>
     <h1>Add Property</h1>
-
 </div>
-<div class = "form-container">
-    <form action= {{url_for('addProperty')}} method="POST" enctype="multipart/form-data">
+<div class = "formContainer">
+    <form action = "{{url_for('addProperty')}}" method="POST" enctype= "multipart/form-data">
         {{ form.csrf_token }}
           
     <div>
-        {{ form.title.label }}
-        {{ form.title}}
+        {{ form.title.label (class="form-label")}}
+        {{ form.title (class="form-control")}}
     </div>
     <div>
-        {{ form.desc.label }}
-        {{ form.desc}}
+        {{ form.desc.label (class="form-label")}}
+        {{ form.desc (class="form-control")}}
 
-    </div>
-    <div>
-        {{ form.numRooms.label }}
-        {{ form.numRooms}}
-
-        {{ form.numBaths.label }}
-        {{ form.numBaths}}
-
-    </div>
-    <div>
-        {{ form.price.label }}
-        {{ form.price}}
-
-        {{ form.type.label }}
-        {{ form.type}}
-    </div>
-
-
-    <div>
-        {{ form.location.label }}
-        {{ form.location}}
     </div>
 
     <div>
-        {{ form.photo.label }}
-        {{ form.photo}}
+        {{ form.numRooms.label (class="form-label")}}
+        {{ form.numRooms (class="form-control")}}
+
+        {{ form.numBaths.label (class="form-label")}}
+        {{ form.numBaths (class="form-control")}}
+
     </div>
-    <button type="submit">Add Property</button>
+    <div>
+        {{ form.price.label (class="form-label")}}
+        {{ form.price (class="form-control")}}
+
+        {{ form.ptype.label (class="form-label")}}
+        {{ form.ptype (class="form-control")}}
+    </div>
+
+
+    <div>
+        {{ form.location.label (class="form-label")}}
+        {{ form.location (class="form-control")}}
+    </div>
+
+    <div>
+        {{ form.photo.label (class="form-label")}}
+        {{ form.photo (class="form-control")}}
+    </div>
+    <button type="submit" class="btn btn-primary">Add Property</button>
     
     </form>
 </div>

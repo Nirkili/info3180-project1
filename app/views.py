@@ -5,11 +5,11 @@ Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file contains the routes for your application.
 """
 
-from app import app, db
 from flask import render_template, request, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
-from forms import PropertyForm
-from models import Property
+from . import app, db
+from .forms import PropertyForm
+from .models import Property
 import os
 
 def get_uploaded_images():
@@ -21,12 +21,6 @@ def get_uploaded_images():
                 lst.append(file)
             
     return lst
-
-def get_image(filename):
-    
-    uploads = os.path.join(os.getcwd(),app.config['UPLOAD_FOLDER'])
-    if(os.path.exists(os.path.join(uploads, filename))):
-        return send_from_directory(uploads, filename)
     
 ###
 # Routing for your application.
@@ -46,8 +40,13 @@ def about():
 @app.route('/properties/create', methods = ["GET","POST"]) 
 def addProperty():
     form = PropertyForm()
-    
+    print("Method:", request.method)
+    print("Submitted:", form.is_submitted())
+    print("CSRF token:", form.csrf_token.data)
+    print("Validate:", form.validate())
+    print("Errors:", form.errors)
     if form.validate_on_submit():
+        print("After")
         title = form.title.data
         desc = form.desc.data
         numRooms = form.numRooms.data
@@ -67,9 +66,15 @@ def addProperty():
         
         flash('Property Saved', 'success')
         
-        return redirect(url_for("showProperties"))
-        
+        return redirect(url_for("home"))
+    
     return render_template("create_property.html", form = form)
+
+@app.route('/uploads/<filename>')
+def get_image(filename):
+    uploads = os.path.join(os.getcwd(),app.config['UPLOAD_FOLDER'])
+    if(os.path.exists(os.path.join(uploads, filename))):
+        return send_from_directory(uploads, filename)
     
 @app.route('/properties')
 def showProperties():

@@ -1,3 +1,41 @@
 body {
     padding-top: 5rem;
+    background-color: rgb(237, 243, 241);
+}
+
+:root{
+    --base-col: #2ac1a0
+}
+.icon{
+    width: 30px;
+    height: auto;
+    padding: 0px 5px 5px;
+}
+
+.custom-navbar{
+    background-color: var(--base-col);
+    padding-bottom: 1rem;
+}
+
+.navbar-brand, .navbar-nav .nav-item{
+    margin-right: 30px; 
+}
+h1{
+    font-weight: bold;
+}
+
+.price-badge, .type-badge{
+    border-radius: 50px;
+    padding: 5px 10px 5px 10px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.price-badge{
+    background-color: rgb(75, 178, 238);
+}
+
+.type-badge{
+    background-color: rgb(235, 195, 33);
 }

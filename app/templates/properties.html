@@ -1,16 +1,25 @@
+<!--<a href="https://www.flaticon.com/free-icons/navigation" title="navigation icons">Navigation icons created by hqrloveq - Flaticon</a>-->
+
 {% extends "base.html" %}
+{% block css%}
+    <link rel="stylesheet" href = "{{url_for('static', filename = 'css/properties.css')}}">
+{%endblock %}
 
 {% block main%}
     <h1>Properties</h1>
     <div id = "propDisplay">
         {% for i in properties%}
             <div class = "propContainer">
+
                 <img src = "{{url_for('get_image', filename = i.filename)}}">
 
-                <h3 class = "title">{{i.title}}</h3>
-                <p class = "location">{{i.location}}</p>
-                <span class = "price">{{i.price}}</span>
-                <a href="{{ url_for('viewProperty', id=i.id) }}">
+                <div class = "propInfo">
+                    <h3>{{i.title}}</h3>
+                    <p><img class = "icon" src = "{{url_for('static', filename = 'img/gps.png')}}">{{i.location}}</p>
+                    <span class="badge price-badge me-2">${{ "{:,}".format(i.price) }}</span>
+                </div>
+
+                <a href="{{ url_for('viewProperty', propertyid=i.id) }}">
                     <button class="viewProp">View Property</button>
                 </a>
             </div>
