@@ -10,39 +10,47 @@
     <form action = "{{url_for('addProperty')}}" method="POST" enctype= "multipart/form-data">
         {{ form.csrf_token }}
           
-    <div>
+    <div class = "mb-3">
         {{ form.title.label (class="form-label")}}
         {{ form.title (class="form-control")}}
     </div>
-    <div>
+    <div class = "mb-3">
         {{ form.desc.label (class="form-label")}}
         {{ form.desc (class="form-control")}}
 
     </div>
 
-    <div>
-        {{ form.numRooms.label (class="form-label")}}
-        {{ form.numRooms (class="form-control")}}
+    <div class = "row mb-3">
+        <div class = "col-md-4">
+            {{ form.numRooms.label (class="form-label")}}
+            {{ form.numRooms (class="form-control")}}
+        </div>
 
-        {{ form.numBaths.label (class="form-label")}}
-        {{ form.numBaths (class="form-control")}}
+        <div class = "col-md-4">
+            {{ form.numBaths.label (class="form-label")}}
+            {{ form.numBaths (class="form-control")}}
+        </div>
 
     </div>
-    <div>
-        {{ form.price.label (class="form-label")}}
-        {{ form.price (class="form-control")}}
+    <div class = "row mb-3">
+        <div class = "col-md-4">
+            {{ form.price.label (class="form-label")}}
+            {{ form.price (class="form-control")}}
+        </div>
 
-        {{ form.ptype.label (class="form-label")}}
-        {{ form.ptype (class="form-control")}}
+        <div class = "col-md-4">
+            {{ form.ptype.label (class="form-label")}}
+            {{ form.ptype (class="form-control")}}
+        </div>
     </div>
 
 
-    <div>
+    <div class = "mb-3">
         {{ form.location.label (class="form-label")}}
         {{ form.location (class="form-control")}}
     </div>
 
-    <div>
+    <div class = "mb-3">
         {{ form.photo.label (class="form-label")}}
         {{ form.photo (class="form-control")}}
     </div>

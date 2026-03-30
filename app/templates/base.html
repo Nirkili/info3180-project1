@@ -19,11 +19,10 @@
         <div class="container">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
-                    {% for category, message in messages %}
+                    {%set message, category = messages[0]%}
                     <div class="alert alert-{{ category }}">
-                        {{ message }}
+                        {{ message}}
                     </div>
-                    {% endfor %}
                 {% endif %}
             {% endwith %}
             {% block main %}{% endblock %}

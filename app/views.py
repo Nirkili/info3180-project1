@@ -40,13 +40,8 @@ def about():
 @app.route('/properties/create', methods = ["GET","POST"]) 
 def addProperty():
     form = PropertyForm()
-    print("Method:", request.method)
-    print("Submitted:", form.is_submitted())
-    print("CSRF token:", form.csrf_token.data)
-    print("Validate:", form.validate())
-    print("Errors:", form.errors)
+
     if form.validate_on_submit():
-        print("After")
         title = form.title.data
         desc = form.desc.data
         numRooms = form.numRooms.data
