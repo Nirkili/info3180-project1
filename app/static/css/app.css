@@ -7,9 +7,9 @@ body {
     --base-col: #2ac1a0
 }
 .icon{
-    width: 30px;
+    width: 18px;
     height: auto;
-    padding: 0px 5px 5px;
+    padding-bottom:5px;
 }
 
 .custom-navbar{

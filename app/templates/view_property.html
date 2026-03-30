@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block css%}
     <link rel="stylesheet" href = "{{url_for('static', filename = 'css/property.css')}}">
+    <!--<a href="https://www.flaticon.com/free-icons/room" title="room icons">Room icons created by xnimrodx - Flaticon</a>
+    <a href="https://www.flaticon.com/free-icons/shower-head" title="shower head icons">Shower head icons created by fjstudio - Flaticon</a>-->
 {%endblock %}
 {% block main%}
 
     
-<div class="container mt-4">
+<div id = "propContainer" class="container mt-4">
     <div class="card shadow-sm">
         <div class="row g-0">
 
@@ -15,7 +17,7 @@
                      alt="property image">
             </div>
 
-            <div class="col-md-7">
+            <div id = "infoCard" class="col-md-7">
                 <div class="card-body">
 
                     <h4 class="card-title">{{property.title}}</h4>
@@ -30,12 +32,12 @@
                     </p>
 
                     <div class="d-flex gap-4 mb-2">
-                        <span> {{property.numRooms}} Bedrooms</span>
-                        <span> {{property.numBaths}} Bathrooms</span>
+                        <span><img class = "icon" src = "{{url_for('static', filename = 'img/bed.png')}}"> {{property.numRooms}} Bedrooms</span>
+                        <span> <img class = "icon" src = "{{url_for('static', filename = 'img/shower.png')}}">{{property.numBaths}} Bathrooms</span>
                     </div>
 
                     <p class="text-muted mb-3">
-                        {{property.location}}
+                        <img class = "icon" src = "{{url_for('static', filename = 'img/gps.png')}}">{{property.location}}
                     </p>
 
                     <button class="btn custom-btn">Email Realtor</button>

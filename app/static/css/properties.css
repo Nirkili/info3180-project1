@@ -49,6 +49,9 @@ img{
     padding-bottom: 15px;
 }
 
+a{
+    margin-top: auto;
+}
 .viewProp{
     background-color: #2ac1a0;
     color: #fff;

@@ -1,14 +1,9 @@
-.propContainer{
-    display: flex;
-    flex-direction: row;
-    width: 40%;
-    height: 50%;
-    border: 3px rgb(184, 185, 183);
+#propContainer{
+    padding-top: 50px;
 }
 
-#infoDisplay{
-    display: flex;
-    flex-direction: column;
+#infoCard{
+    padding: 30px;
 }
 
 .custom-btn{

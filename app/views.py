@@ -59,10 +59,11 @@ def addProperty():
         db.session.add(prop)
         db.session.commit()
         
-        flash('Property Saved', 'success')
+        flash('Property Saved Successfully!', 'success')
         
         return redirect(url_for("home"))
     
+    flash_errors(form)
     return render_template("create_property.html", form = form)
 
 @app.route('/uploads/<filename>')

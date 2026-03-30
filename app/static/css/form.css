@@ -1,11 +1,16 @@
 .formContainer{
     background-color: white;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 25px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
 }
 
 .formContainer div{
     padding: 10px;
+}
+
+textarea{
+    resize: none;
 }
